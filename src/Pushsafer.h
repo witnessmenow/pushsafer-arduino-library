@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 #include <ArduinoJson.h>
 #include <Client.h>
 
-#define HOST "pushsafer.com"
+#define HOST "www.pushsafer.com"
 #define SSL_PORT 443
 
 struct PushSaferInput{

@@ -1,8 +1,7 @@
 /*
-Copyright (c) 2015 Giancarlo Bacchio. All right reserved.
+Copyright (c) 2017 Brian Lough. All right reserved.
 
-TelegramBot - Library to create your own Telegram Bot using
-ESP8266 on Arduino IDE.
+Pushsafer - Library to send Pushsafer notifications.
 Ref. Library at https:github/esp8266/Arduino
 
 This library is free software; you can redistribute it and/or
@@ -34,9 +33,8 @@ String Pushsafer::sendEvent(PushSaferInput input) {
 	long now;
 	bool responseReceived;
   String boundary = "------------------------b8f610217e83e29b";
-	// Connect with api.telegram.org
   if (client->connect(HOST, SSL_PORT)) {
-
+    Serial.println("Connected");
     String start_request = "";
     String end_request = "";
 
@@ -79,14 +77,14 @@ String Pushsafer::sendEvent(PushSaferInput input) {
 
     if (debug) Serial.print(start_request);
 
-    client->println(end_request);
+    client->print(end_request);
     if (debug) Serial.print(end_request);
 
     char c;
     now=millis();
     bool finishedHeaders = false;
     bool currentLineIsBlank = true;
-    while (millis()-now<1500) {
+    while (millis()-now<5000) {
       while (client->available()) {
         Serial.println("response");
         char c = client->read();
@@ -120,6 +118,7 @@ String Pushsafer::sendEvent(PushSaferInput input) {
         }
         break;
       }
+      delay(10); //Feed watchdog
     }
   }
 
