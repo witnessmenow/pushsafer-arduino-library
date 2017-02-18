@@ -38,14 +38,28 @@ String Pushsafer::sendEvent(PushSaferInput input) {
     String start_request = "";
     String end_request = "";
 
+    // required Params
+    start_request = start_request + buildString(boundary, "k", _key);	  
     start_request = start_request + buildString(boundary, "m", input.message);
-    start_request = start_request + buildString(boundary, "d", input.device);
-    start_request = start_request + buildString(boundary, "k", _key);
-    start_request = start_request + buildString(boundary, "s", input.sound);
-    start_request = start_request + buildString(boundary, "v", input.vibration);
-    start_request = start_request + buildString(boundary, "i", input.icon);
 
     // Optional Params
+    if(input.device != "")
+    {
+      start_request = start_request + buildString(boundary, "t", input.device);
+    }
+    if(input.sound != "")
+    {
+      start_request = start_request + buildString(boundary, "s", input.sound);
+    }
+    if(input.vibration != "")
+    {
+      start_request = start_request + buildString(boundary, "v", input.vibration);
+    }
+    if(input.icon != "")
+    {
+      start_request = start_request + buildString(boundary, "i", input.icon);
+    }
+
     if(input.title != "")
     {
       start_request = start_request + buildString(boundary, "t", input.title);
@@ -57,6 +71,22 @@ String Pushsafer::sendEvent(PushSaferInput input) {
     if(input.urlTitle != "")
     {
       start_request = start_request + buildString(boundary, "ut", input.urlTitle);
+    }
+    if(input.time2live != "")
+    {
+      start_request = start_request + buildString(boundary, "l", input.time2live);
+    }
+    if(input.picture != "")
+    {
+      start_request = start_request + buildString(boundary, "p", input.picture);
+    }
+    if(input.picture2 != "")
+    {
+      start_request = start_request + buildString(boundary, "p2", input.picture2);
+    }
+    if(input.picture3 != "")
+    {
+      start_request = start_request + buildString(boundary, "p3", input.picture3);
     }
 
     end_request = end_request + "--" + boundary + "--" + "\r\n";
