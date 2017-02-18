@@ -42,7 +42,7 @@ void setup() {
   input.sound = "8";
   input.vibration = "1";
   input.icon = "1";
-  input.device = "2722";
+  input.device = "a";
 
   // Other optional Options
   // input.title;
