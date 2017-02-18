@@ -6,6 +6,7 @@
 char ssid[] = "ssid";     // your network SSID (name)
 char password[] = "password"; // your network key
 
+// Pushsafer private or alias key
 #define PushsaferKey "XXXXXXXXXXXXX"
 
 WiFiClientSecure client;
@@ -38,17 +39,21 @@ void setup() {
   pushsafer.debug = true;
 
   struct PushSaferInput input;
-  input.message = "Hello!";
+  input.message = "This is a test message";
+  input.title = "Hello!";
   input.sound = "8";
   input.vibration = "1";
   input.icon = "1";
   input.device = "a";
 
+  // API description: https://www.pushsafer.com/en/pushapi
   // Other optional Options
-  // input.title;
   // input.url;
   // input.urlTitle;
   // input.picture;
+  // input.picture2;
+  // input.picture3;
+  // input.time2live;
 
   Serial.println(pushsafer.sendEvent(input));
   Serial.println("Sent");
