@@ -38,7 +38,10 @@ struct PushSaferInput{
   String device;
   String url;
   String urlTitle;
+  String Time2Live;
   String picture;
+  String picture2;
+  String picture3;
 };
 
 class Pushsafer
